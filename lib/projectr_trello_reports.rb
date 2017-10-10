@@ -30,7 +30,9 @@ cards.each do |card|
   start_action = actions.select do |action|
     list_after = action['data']['listAfter']
     list_after && list_after['name'] == TRELLO_COLUMN_START
-  end.first
+    # We take last action which is the oldest one.
+    # It means the first time when the card was moved to Doing column
+  end.last
 
   next unless start_action
   puts 'Found start date.'
