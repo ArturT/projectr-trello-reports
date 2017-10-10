@@ -5,6 +5,7 @@ require 'net/http'
 require 'digest/sha1'
 
 require_relative 'projectr_trello_reports/trello/client'
+require_relative 'projectr_trello_reports/report_generator'
 
 CACHE_ENABLED = ENV.fetch('CACHE_ENABLED')
 TRELLO_KEY = ENV.fetch('TRELLO_KEY')
@@ -53,6 +54,11 @@ cards.each do |card|
   )
 end
 
+report_name = ReportGenerator.new.csv(TRELLO_BOARD_ID, completed_cards)
 
+puts
+puts "=============== Summary ==============="
+puts
 puts "All cards in Trello board: #{cards.size}"
 puts "Completed cards in Trello board: #{completed_cards.size}"
+puts "CSV report saved: #{report_name}"
