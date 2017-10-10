@@ -10,8 +10,8 @@ class ReportGenerator
 
   def generate_csv(records)
     headers = [
-      "Start Date",
-      "Finish Date",
+      "Started",
+      "Done",
     ]
     content = headers.join(',') + "\n"
 
