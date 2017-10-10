@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/projectr_trello_reports'
+
+something = ARGV[0]
+
+puts 'Start!'
