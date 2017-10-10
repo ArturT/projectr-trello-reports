@@ -2,9 +2,11 @@ require 'dotenv/load'
 require 'json'
 require 'uri'
 require 'net/http'
+require 'digest/sha1'
 
 require_relative 'projectr_trello_reports/trello/client'
 
+CACHE_ENABLED = ENV.fetch('CACHE_ENABLED')
 TRELLO_KEY = ENV.fetch('TRELLO_KEY')
 TRELLO_TOKEN = ENV.fetch('TRELLO_TOKEN')
 TRELLO_BOARD_ID = ENV.fetch('TRELLO_BOARD_ID')
@@ -18,6 +20,7 @@ cards = trello_client.board_cards(TRELLO_BOARD_ID)
 completed_cards = []
 
 cards.each do |card|
+  puts
   puts "Card ID: #{card['id']}"
   actions = trello_client.card_actions(card['id'])
   #puts JSON.pretty_generate(actions)
@@ -48,7 +51,6 @@ cards.each do |card|
     start_date: start_action['date'],
     end_date: end_action['date'],
   )
-  puts
 end
 
 
