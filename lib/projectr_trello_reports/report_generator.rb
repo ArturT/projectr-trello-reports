@@ -27,10 +27,14 @@ class ReportGenerator
     rows = []
     records.each do |r|
       rows << [
-        r.start_date,
-        r.end_date,
+        date_yyyy_mm_dd(r.start_date),
+        date_yyyy_mm_dd(r.end_date),
       ]
     end
     rows
+  end
+
+  def date_yyyy_mm_dd(date)
+    date[0..9]
   end
 end
