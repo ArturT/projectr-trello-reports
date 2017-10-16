@@ -1,6 +1,7 @@
 class ReportGenerator
   def csv(board_id, completed_cards)
-    csv = generate_csv(completed_cards)
+    sorted_cards = sort_cards(completed_cards)
+    csv = generate_csv(sorted_cards)
     report_name = "#{board_id}_report.csv"
     File.write(report_name, csv)
     report_name
@@ -36,5 +37,11 @@ class ReportGenerator
 
   def date_yyyy_mm_dd(date)
     date[0..9]
+  end
+
+  def sort_cards(cards)
+    cards.sort_by do |card|
+      [DateTime.parse(card.start_date), DateTime.parse(card.end_date)]
+    end
   end
 end

@@ -3,6 +3,7 @@ require 'json'
 require 'uri'
 require 'net/http'
 require 'digest/sha1'
+require 'date'
 
 require_relative 'projectr_trello_reports/trello/client'
 require_relative 'projectr_trello_reports/report_generator'
